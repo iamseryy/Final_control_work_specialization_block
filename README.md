@@ -43,6 +43,6 @@
 |№|**Part**|**Description**|
 |--|--|--|
 |1|**[Part1](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/1_ubuntu_part)**|Задания - терминал Ubuntu|
-|2|**[Part2](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/1_ubuntu_part)**|Задания - диаграмма классов|
-|3|**[Part3](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/1_ubuntu_part)**|Задания - база данных|
-|4|**[Part4](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/1_ubuntu_part)**|Проект - реестр домашних животных|
+|2|**[Part2](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/2_class_diagram_part)**|Задания - диаграмма классов|
+|3|**[Part3](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/3_database_part)**|Задания - база данных|
+|4|**[Part4](https://github.com/iamseryy/Final_control_work_specialization_block/tree/main/4_pet_registry_project_part)**|Проект - реестр домашних животных|
