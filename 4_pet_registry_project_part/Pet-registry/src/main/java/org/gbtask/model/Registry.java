@@ -2,14 +2,15 @@ package org.gbtask.model;
 
 import org.gbtask.model.base.Animal;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Registry {
-    private HashMap<Integer, Animal> animals;
+public class Registry implements Serializable {
+    private int id;
+    private Animal animal;
 
-    public Registry(HashMap<Integer, Animal> animals) {
-        this.animals = animals;
+    public Registry(int id, Animal animal) {
+        this.id = id;
+        this.animal = animal;
     }
-
-
 }

@@ -4,11 +4,13 @@ import org.gbtask.model.Registry;
 import org.gbtask.model.base.Animal;
 import org.gbtask.repository.RegistryRepo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Optional;
 
 public class RegistryRepoImpl implements RegistryRepo {
-    private static Registry registry = new Registry(new HashMap<>());
+    private static HashSet<Registry> registry = initRegistry();
 
     private static RegistryRepoImpl instance;
 
@@ -20,8 +22,13 @@ public class RegistryRepoImpl implements RegistryRepo {
     }
 
     @Override
-    public int add(Animal animal) {
-        return 0;
+    public void add(Registry registry) {
+
+        if(this.registry.contains(registry)){
+            return;
+        }
+
+        this.registry.add(registry);
     }
 
     @Override
@@ -35,7 +42,22 @@ public class RegistryRepoImpl implements RegistryRepo {
     }
 
     @Override
-    public Optional<HashMap<Integer, Animal>> findAll() {
-        return Optional.empty();
+     public HashSet<Registry> findAll() {
+
+        return this.registry;
+    }
+
+    private static HashSet<Registry> initRegistry() {
+        var registry = new HashSet<Registry>();
+       /*
+        ArrayList<String> data = FileUtils.readFiles(AppConfig.getPath("path.database"));
+
+        for (String line: data) {
+            String[] values = line.split("><");
+            people.add(new Person(values[1], values[0].replace("<", ""), values[2],
+                    values[3].replace(">", "")));
+        }
+*/
+        return registry;
     }
 }
