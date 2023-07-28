@@ -12,12 +12,11 @@ import java.util.HashSet;
 public class Hamster extends Pet {
     public Hamster(@JsonProperty("height") int height,
                    @JsonProperty("weight") int weight,
-                   @JsonProperty("сolor") String сolor,
+                   @JsonProperty("birthDate") Calendar birthDate,
                    @JsonProperty("name") String name,
                    @JsonProperty("breed") String breed,
-                   @JsonProperty("birthDate") Calendar birthDate,
                    @JsonProperty("isVaccinated") boolean isVaccinated,
                    @JsonProperty("commands") HashSet<String> commands) {
-        super(height, weight, сolor, name, breed, birthDate, isVaccinated, commands);
+        super(height, weight, birthDate, name, breed, isVaccinated, commands);
     }
 }

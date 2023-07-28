@@ -13,15 +13,14 @@ public class Horse extends Pac {
 
     public Horse(@JsonProperty("height") int height,
                  @JsonProperty("weight") int weight,
-                 @JsonProperty("сolor") String сolor,
+                 @JsonProperty("birthDate") Calendar birthDate,
                  @JsonProperty("name") String name,
                  @JsonProperty("breed") String breed,
-                 @JsonProperty("birthDate") Calendar birthDate,
                  @JsonProperty("commands") HashSet<String> commands,
                  @JsonProperty("loadCapacity") int loadCapacity,
                  @JsonProperty("speed") int speed,
                  @JsonProperty("isBreak") boolean isBreak) {
-        super(height, weight, сolor, name, breed, birthDate, commands, loadCapacity, speed);
+        super(height, weight, birthDate, name, breed, commands, loadCapacity, speed);
         this.isBreak = isBreak;
     }
 }

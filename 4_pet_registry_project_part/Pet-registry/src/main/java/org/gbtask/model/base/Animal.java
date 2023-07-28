@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.gbtask.model.*;
 
+import java.util.Calendar;
+
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
@@ -17,12 +19,12 @@ import org.gbtask.model.*;
 public abstract class Animal{
     private int height;
     private int weight;
-    private String сolor;
+    private Calendar birthDate;
 
-    public Animal(int height, int weight, String сolor) {
+    public Animal(int height, int weight, Calendar birthDate) {
         this.height = height;
         this.weight = weight;
-        this.сolor = сolor;
+        this.birthDate = birthDate;
     }
 
     public int getHeight() {
@@ -41,12 +43,12 @@ public abstract class Animal{
         this.weight = weight;
     }
 
-    public String getСolor() {
-        return сolor;
+    public Calendar getBirthDate() {
+        return birthDate;
     }
 
-    public void setСolor(String сolor) {
-        this.сolor = сolor;
+    public void setBirthDate(Calendar birthDate) {
+        this.birthDate = birthDate;
     }
 }
 

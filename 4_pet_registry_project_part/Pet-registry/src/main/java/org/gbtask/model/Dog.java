@@ -14,14 +14,13 @@ public class Dog extends Pet {
 
     public Dog(@JsonProperty("height") int height,
                @JsonProperty("weight") int weight,
-               @JsonProperty("сolor") String сolor,
+               @JsonProperty("birthDate") Calendar birthDate,
                @JsonProperty("name") String name,
                @JsonProperty("breed") String breed,
-               @JsonProperty("birthDate") Calendar birthDate,
                @JsonProperty("isVaccinated") boolean isVaccinated,
                @JsonProperty("commands") HashSet<String> commands,
                @JsonProperty("powerSenseSmell") int powerSenseSmell) {
-        super(height, weight, сolor, name, breed, birthDate, isVaccinated, commands);
+        super(height, weight, birthDate, name, breed, isVaccinated, commands);
         this.powerSenseSmell = powerSenseSmell;
     }
 }
