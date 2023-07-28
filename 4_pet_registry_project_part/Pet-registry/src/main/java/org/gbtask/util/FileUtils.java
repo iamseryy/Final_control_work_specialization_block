@@ -1,6 +1,5 @@
 package org.gbtask.util;
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.gbtask.config.AppConfig;
 import org.gbtask.exception.DataBaseException;
 
@@ -33,9 +32,5 @@ public class FileUtils {
             AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
             throw new DataBaseException("Database error, contact support");
         }
-    }
-
-    private static File[] folderFiles(String folderPath){
-        return new File(folderPath).listFiles();
     }
 }

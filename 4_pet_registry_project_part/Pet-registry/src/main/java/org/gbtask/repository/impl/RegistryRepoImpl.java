@@ -9,17 +9,14 @@ import org.gbtask.model.Registry;
 import org.gbtask.model.base.Animal;
 import org.gbtask.repository.RegistryRepo;
 import org.gbtask.util.FileUtils;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.Optional;
 import java.util.logging.Level;
 
 public class RegistryRepoImpl implements RegistryRepo {
     private static HashMap<Integer, Registry> registry = initRegistry();
-    private static int id = 0;
+    private static int id = registry.size();
 
     private static RegistryRepoImpl instance;
 
@@ -31,15 +28,20 @@ public class RegistryRepoImpl implements RegistryRepo {
     }
 
     @Override
-    public int add(Animal animal) throws DataBaseException, JsonProcessingException, PetRegistryException {
+    public int add(Animal animal) throws PetRegistryException {
         if(animal == null){
             throw new PetRegistryException("Invalid registry entry");
         }
 
         Registry registryItem = new Registry(id, animal);
-        String line = serializeToXml(registryItem);
-        this.registry.put(this.id++, registryItem);
-        FileUtils.writeFile(line, AppConfig.getProperty("file.registry"), true);
+        try {
+            String line = serializeToXml(registryItem);
+            this.registry.put(this.id++, registryItem);
+            FileUtils.writeFile(line + '\n', AppConfig.getProperty("file.registry"), true);
+        } catch (JsonProcessingException | DataBaseException e) {
+            AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
+            throw new RuntimeException(e);
+        }
 
         return(this.id - 1);
     }
@@ -56,21 +58,21 @@ public class RegistryRepoImpl implements RegistryRepo {
 
     @Override
      public HashMap<Integer, Registry> findAll() {
-
         return this.registry;
     }
 
     private static HashMap<Integer, Registry> initRegistry() {
         var registry = new HashMap<Integer, Registry>();
-        ArrayList<String> data = FileUtils.readFile(AppConfig.getProperty("file.registry"));
 
-        for (String line: data){
-            try {
-                var item = deserializeXml(line);
-                registry.put(item.id(), item);
-            } catch (JsonProcessingException | DataBaseException e) {
-                AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
+        try {
+            ArrayList<String>  data = FileUtils.readFile(AppConfig.getProperty("file.registry"));
+            for (String line: data){
+                    var item = deserializeXml(line);
+                    registry.put(item.id(), item);
             }
+        } catch (JsonProcessingException | DataBaseException e) {
+            AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
+            throw new RuntimeException(e);
         }
 
         return registry;
@@ -87,18 +89,4 @@ public class RegistryRepoImpl implements RegistryRepo {
     private static String serializeToXml(Registry registry) throws JsonProcessingException {
         return new XmlMapper().writeValueAsString(registry);
     }
-
-
 }
-//AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
-//    File file = new File(AppConfig.getPath("path.database") + "/" + "simple_bean.xml");
-//    XmlMapper xmlMapper = new XmlMapper();
-//        xmlMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-//                try {
-//
-//                String xml = xmlMapper.writeValueAsString(new SimpleBean());
-//                xmlMapper.writeValue(file, animal1);
-//                xmlMapper.writeValue(file, animal2);
-//                } catch (IOException e) {
-//                throw new RuntimeException(e);
-//                }

@@ -1,10 +1,10 @@
 package org.gbtask.model.base;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashSet;
 
-public abstract class Pet extends Animal implements Serializable {
+
+public abstract class Pet extends Animal{
     private String name;
     private String breed;
     private Calendar birthDate;
@@ -18,6 +18,46 @@ public abstract class Pet extends Animal implements Serializable {
         this.breed = breed;
         this.birthDate = birthDate;
         this.isVaccinated = isVaccinated;
+        this.commands = commands;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public Calendar getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Calendar birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public boolean isVaccinated() {
+        return isVaccinated;
+    }
+
+    public void setVaccinated(boolean vaccinated) {
+        isVaccinated = vaccinated;
+    }
+
+    public HashSet<String> getCommands() {
+        return commands;
+    }
+
+    public void setCommands(HashSet<String> commands) {
         this.commands = commands;
     }
 }
