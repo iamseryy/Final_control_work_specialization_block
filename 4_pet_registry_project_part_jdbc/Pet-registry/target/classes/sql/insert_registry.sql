@@ -1,0 +1,1 @@
+INSERT INTO registry (note) VALUES(?)

@@ -1,0 +1,1 @@
+INSERT INTO camel (height, weight, birthdate, name, breed, loadcapacity, milkvalue, registry_id) VALUES (?,?,?,?,?,?,?,?)

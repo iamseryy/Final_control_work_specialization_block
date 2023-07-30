@@ -1,0 +1,1 @@
+INSERT INTO hamster (height, weight, birthdate, name, breed, isvaccinated, registry_id) VALUES (?,?,?,?,?,?,?)

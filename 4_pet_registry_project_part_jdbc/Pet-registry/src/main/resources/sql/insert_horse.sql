@@ -1,0 +1,1 @@
+INSERT INTO horse (height, weight, birthdate, name, breed, loadcapacity, speed, registry_id) VALUES (?,?,?,?,?,?,?,?)

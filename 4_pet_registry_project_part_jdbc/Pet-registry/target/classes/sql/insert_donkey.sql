@@ -1,0 +1,1 @@
+INSERT INTO donkey (height, weight, birthdate, name, breed, loadcapacity, stubbornness, registry_id) VALUES (?,?,?,?,?,?,?,?)

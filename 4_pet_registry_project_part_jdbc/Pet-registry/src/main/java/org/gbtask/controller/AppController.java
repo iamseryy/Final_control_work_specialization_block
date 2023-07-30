@@ -7,12 +7,12 @@ import java.sql.*;
 
 public class AppController {
     public static void start(){
- //       new GeneralMenuImpl().processing();
-        try {
-            testSql();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        new GeneralMenuImpl().processing();
+//        try {
+//            testSql();
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
 
 
     }
@@ -20,7 +20,7 @@ public class AppController {
 
     static void testSql() throws ClassNotFoundException {
         System.out.println("Registering JDBC driver...");
-        Class.forName("com.mysql.jdbc.Driver");
+        //Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/pet_registry", "root", "1001");){
             Statement statement = connection.createStatement();
             String sql = "SELECT * FROM cat";

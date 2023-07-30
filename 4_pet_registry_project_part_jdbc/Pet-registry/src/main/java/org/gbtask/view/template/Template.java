@@ -9,5 +9,5 @@ public interface Template<T> {
     void output();
 
     RegistryService registryService = new RegistryServiceImpl();
-    UserInterface ui = new UserInterfaceImpl();
+    UserInterface ui = UserInterfaceImpl.getInstance();
 }

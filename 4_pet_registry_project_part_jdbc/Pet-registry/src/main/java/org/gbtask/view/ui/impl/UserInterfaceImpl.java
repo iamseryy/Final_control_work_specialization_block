@@ -1,5 +1,6 @@
 package org.gbtask.view.ui.impl;
 
+import org.gbtask.repository.impl.RegistryRepoImpl;
 import org.gbtask.view.ui.Parserable;
 import org.gbtask.view.ui.UserInterface;
 
@@ -8,6 +9,16 @@ import java.util.Scanner;
 
 public class UserInterfaceImpl <T> implements UserInterface {
     private static Scanner scanner = new Scanner(System.in);
+    private static UserInterfaceImpl instance;
+
+    private UserInterfaceImpl(){}
+
+    public static UserInterfaceImpl getInstance() {
+        if (instance == null) {
+            instance = new UserInterfaceImpl();
+        }
+        return instance;
+    }
 
     @Override
     public Optional<T> input(String message, Parserable parser) {

@@ -17,4 +17,36 @@ public abstract class Pac extends Animal{
         this.commands = commands;
         this.loadCapacity = loadCapacity;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public HashSet<String> getCommands() {
+        return commands;
+    }
+
+    public void setCommands(HashSet<String> commands) {
+        this.commands = commands;
+    }
+
+    public int getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(int loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
 }

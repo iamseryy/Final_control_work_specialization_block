@@ -1,0 +1,1 @@
+INSERT INTO dog (height, weight, birthdate, name, breed, isvaccinated, powersensesmell, registry_id) VALUES (?,?,?,?,?,?,?,?)
