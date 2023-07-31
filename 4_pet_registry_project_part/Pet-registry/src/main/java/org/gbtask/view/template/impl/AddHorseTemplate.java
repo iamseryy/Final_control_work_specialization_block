@@ -1,10 +1,12 @@
 package org.gbtask.view.template.impl;
 
 import org.gbtask.config.AppConfig;
+import org.gbtask.exception.CloseCounterException;
 import org.gbtask.exception.DataBaseException;
 import org.gbtask.model.Dog;
 import org.gbtask.model.Donkey;
 import org.gbtask.model.Horse;
+import org.gbtask.view.template.Counter;
 import org.gbtask.view.template.Template;
 
 import java.text.SimpleDateFormat;
@@ -90,9 +92,10 @@ public class AddHorseTemplate  implements Template {
         Horse horse = new Horse(height.get(), weight.get(), birthDate, name.get(), breed.get(), commands,
                 loadCapacity.get(), speed.get());
 
-        try {
+        try(Counter counter = new Counter()) {
             ui.output("Added registry entry: " + registryService.add(horse, note.get()));
-        } catch (DataBaseException e) {
+            counter.add();
+        } catch (DataBaseException | CloseCounterException e ) {
             AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
             ui.output(e.toString());
         }

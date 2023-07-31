@@ -1,12 +1,13 @@
 package org.gbtask.view.menu;
 
+import org.gbtask.view.template.Counter;
 import org.gbtask.view.template.impl.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 public interface GeneralMenu {
-    String header = "\nPet registry\n";
+    String header = "\nPet registry\n" + "Всего животных";
     List<MenuItem> generalMenuItems = Arrays.asList(
             new MenuItem[] {
                     new MenuItem("1 Print registry", () -> new PrintRegistryTemplate().output()),
