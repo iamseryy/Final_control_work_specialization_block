@@ -5,11 +5,10 @@ import org.gbtask.exception.CloseCounterException;
 import java.io.Closeable;
 
 public class Counter implements AutoCloseable {
-    private int counter;
+    private static int counter = 0;
     private boolean isOpen;
 
     public Counter(){
-        this.counter = 0;
         this.isOpen = true;
     }
 
