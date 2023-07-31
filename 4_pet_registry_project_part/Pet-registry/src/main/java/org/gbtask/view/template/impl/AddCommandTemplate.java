@@ -58,6 +58,12 @@ public class AddCommandTemplate  implements Template {
         }
 
         var newCommands = getNewCommands(commandsExisting);
+        if(!newCommands.isEmpty()){
+            registryService.addCommandsByRegistryId(id, newCommands);
+            ui.output("\nCommands added");
+        }
+
+        ui.pressEnterToContinue();
     }
 
     private static HashSet<String> getNewCommands(HashSet<String> commandsExisting){

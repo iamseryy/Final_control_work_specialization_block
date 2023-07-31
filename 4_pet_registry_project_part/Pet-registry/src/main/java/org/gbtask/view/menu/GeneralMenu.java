@@ -11,7 +11,7 @@ public interface GeneralMenu {
             new MenuItem[] {
                     new MenuItem("1 Print registry", () -> new PrintRegistryTemplate().output()),
                     new MenuItem("2 Find animal by id", () -> new FindAnimalTemplate().output()),
-                    new MenuItem("3 Animal command list", () -> new AnimalCommandListTemplate().output()),
+                    new MenuItem("3 Print animal command list", () -> new AnimalCommandListTemplate().output()),
                     new MenuItem("4 Add animal command", () -> new AddCommandTemplate().output()),
                     new MenuItem("5 Add animal", () -> new AddAnimalTemplate().output()),
                     new MenuItem("6 Exit", () -> new ExitTemplate().output())
