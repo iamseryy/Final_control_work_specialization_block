@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Optional;
 
 public class RegistryServiceImpl implements RegistryService {
-    private static RegistryRepo registry = RegistryRepoImpl.getInstance();
+    private final static RegistryRepo registry = RegistryRepoImpl.getInstance();
 
     @Override
     public int add(Animal animal, String note) throws DataBaseException {
