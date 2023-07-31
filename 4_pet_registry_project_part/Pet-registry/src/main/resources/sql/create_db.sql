@@ -34,7 +34,7 @@ CREATE TABLE cat (
                      isvaccinated BOOLEAN,
                      mustachelength INT,
                      registry_id INT NOT NULL,
-                     FOREIGN KEY (registry_id) REFERENCES registry (id)
+                     FOREIGN KEY (registry_id) REFERENCES registry (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS dog;

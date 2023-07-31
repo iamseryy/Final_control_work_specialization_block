@@ -7,16 +7,17 @@ import java.util.HashSet;
 public abstract class Pet extends Animal{
     private String name;
     private String breed;
-    private boolean isVaccinated;
     private HashSet<String> commands;
+    private boolean isVaccinated;
 
-    public Pet(int height, int weight, Calendar birthDate, String name, String breed,
-               boolean isVaccinated, HashSet<String> commands) {
+    public Pet(int height, int weight, Calendar birthDate, String name, String breed, HashSet<String> commands,
+               boolean isVaccinated) {
         super(height, weight, birthDate);
         this.name = name;
         this.breed = breed;
-        this.isVaccinated = isVaccinated;
         this.commands = commands;
+        this.isVaccinated = isVaccinated;
+
     }
 
     public String getName() {

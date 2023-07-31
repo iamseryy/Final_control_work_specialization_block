@@ -1,21 +1,7 @@
 package org.gbtask.model.base;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.gbtask.model.*;
-
 import java.util.Calendar;
 
-
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Cat.class, name = "cat"),
-        @JsonSubTypes.Type(value = Camel.class, name = "camel"),
-        @JsonSubTypes.Type(value = Dog.class, name = "dog"),
-        @JsonSubTypes.Type(value = Donkey.class, name = "donkey"),
-        @JsonSubTypes.Type(value = Hamster.class, name = "hamster"),
-        @JsonSubTypes.Type(value = Horse.class, name = "horse")
-})
 public abstract class Animal{
     private int height;
     private int weight;

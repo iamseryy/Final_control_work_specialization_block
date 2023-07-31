@@ -6,4 +6,5 @@ public interface UserInterface <T> {
     Optional<T> input(String message, Parserable parser);
     void output(String message);
     void pressEnterToContinue();
+
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Menu {
-    private static final UserInterface ui = new UserInterfaceImpl<Integer>();
+    private static final UserInterface ui = UserInterfaceImpl.getInstance();
 
     public void processing(String menuHeader, List<MenuItem> menuItemList){
         while (true){
