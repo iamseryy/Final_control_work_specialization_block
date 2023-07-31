@@ -404,6 +404,7 @@ public class RegistryRepoImpl implements RegistryRepo {
 
             preparedStatementRegistry.close();
             preparedStatementAnimal.close();
+            preparedStatementCommand.close();
         } catch (SQLException ex) {
             throw new DataBaseException("SQL Error");
         }
