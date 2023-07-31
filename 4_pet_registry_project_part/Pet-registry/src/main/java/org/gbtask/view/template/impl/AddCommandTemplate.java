@@ -17,7 +17,12 @@ public class AddCommandTemplate  implements Template {
         Optional<Integer> id = ui.input("Enter animal registry ID or enter an empty string to cancel: ", Integer::parseInt);
 
         if (!id.isEmpty()) {
-            outputAnimalInfo(id.get());
+            try {
+                identifyAnimalAndExecute(id.get());
+            } catch (DataBaseException e) {
+                AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
+                ui.output(e.toString());
+            }
         } else {
             ui.output("\nCancelled\n");
         }
@@ -25,36 +30,28 @@ public class AddCommandTemplate  implements Template {
         ui.pressEnterToContinue();
     }
 
-    private void outputAnimalInfo(int id) {
-        try {
-            var animal = registryService.findAnimalByRegistryId(id);
+    private void identifyAnimalAndExecute(int id) throws DataBaseException {
+        var animalOpt = registryService.findAnimalByRegistryId(id);
 
-            if (animal.isEmpty()) {
-                ui.output("\nAnimal not found\n");
-                return;
-            }
-
-            identifyAnimalAndExecute(animal.get(), (animalExecute) -> System.out.println(animalExecute.toString()));
-
-        } catch (DataBaseException e) {
-            AppConfig.LOGGER.log(Level.SEVERE, e.toString(), e);
-            System.out.println(e.toString());
+        if (animalOpt.isEmpty()) {
+            ui.output("\nAnimal not found\n");
+            return;
         }
-    }
 
-    private void identifyAnimalAndExecute(Animal animal, Execute execute) {
+        var animal = animalOpt.get();
+
         if (animal instanceof Cat) {
-            execute.AnimalExecute(((Cat) animal));
+            registryService.addCommandsByRegistryId(id, ((Cat) animal).getCommands());
         } else if (animal instanceof Dog) {
-            execute.AnimalExecute(((Dog) animal));
+            registryService.addCommandsByRegistryId(id, ((Dog) animal).getCommands());
         } else if (animal instanceof Camel) {
-            execute.AnimalExecute(((Camel) animal));
+            registryService.addCommandsByRegistryId(id, ((Camel) animal).getCommands());
         } else if (animal instanceof Donkey) {
-            execute.AnimalExecute(((Donkey) animal));
+            registryService.addCommandsByRegistryId(id, ((Donkey) animal).getCommands());
         } else if (animal instanceof Hamster) {
-            execute.AnimalExecute(((Hamster) animal));
+            registryService.addCommandsByRegistryId(id, ((Hamster) animal).getCommands());
         } else if (animal instanceof Horse) {
-            execute.AnimalExecute(((Horse) animal));
+            registryService.addCommandsByRegistryId(id, ((Horse) animal).getCommands());
         }
     }
 }

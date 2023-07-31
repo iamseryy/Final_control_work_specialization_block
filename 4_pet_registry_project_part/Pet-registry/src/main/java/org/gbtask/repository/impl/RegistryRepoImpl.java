@@ -389,6 +389,16 @@ public class RegistryRepoImpl implements RegistryRepo {
             PreparedStatement preparedStatementAnimal = getPreparedStatementAnimal(connection, animal, id);
             preparedStatementAnimal.executeUpdate();
 
+
+            PreparedStatement preparedStatementCommand = null;
+            for(String command: getCommands(animal)){
+                sql = getQuery(new File(SQL_PATH + "insert_command.sql"));
+                preparedStatementCommand = connection.prepareStatement(sql);
+                preparedStatementCommand.setInt(1, id);
+                preparedStatementCommand.setString(2, command);
+                preparedStatementCommand.executeUpdate();
+            }
+
             connection.commit();
             connection.setAutoCommit(true);
 
@@ -399,6 +409,45 @@ public class RegistryRepoImpl implements RegistryRepo {
         }
 
         return id;
+    }
+
+    private HashSet<String> getCommands(Animal animal){
+        if (animal instanceof Cat) {
+            return ((Cat) animal).getCommands();
+        } else if (animal instanceof Dog) {
+            return ((Dog) animal).getCommands();
+        } else if (animal instanceof Camel) {
+            return ((Camel) animal).getCommands();
+        } else if (animal instanceof Donkey) {
+            return ((Donkey) animal).getCommands();
+        } else if (animal instanceof Hamster) {
+            return ((Hamster) animal).getCommands();
+        } else if (animal instanceof Horse) {
+            return ((Horse) animal).getCommands();
+        }
+
+        return null;
+    }
+
+    @Override
+    public void addCommandsByRegistryId(int registryId, HashSet<String> commands) throws DataBaseException {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);) {
+            String sql = "";
+            PreparedStatement preparedStatement = null;
+
+            for(String command: commands){
+                sql = getQuery(new File(SQL_PATH + "insert_command.sql"));
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, registryId);
+                preparedStatement.setString(2, command);
+                preparedStatement.executeUpdate();
+            }
+
+            preparedStatement.close();
+
+        } catch (SQLException ex) {
+            throw new DataBaseException("SQL Error");
+        }
     }
 
     private PreparedStatement getPreparedStatementAnimal(Connection connection, Animal animal, int id) throws DataBaseException, SQLException {

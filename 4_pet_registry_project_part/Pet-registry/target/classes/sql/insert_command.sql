@@ -1,0 +1,1 @@
+INSERT INTO command (registry_id, command) VALUES(?,?)

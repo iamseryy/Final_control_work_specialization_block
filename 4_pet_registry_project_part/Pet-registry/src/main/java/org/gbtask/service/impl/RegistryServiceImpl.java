@@ -33,4 +33,9 @@ public class RegistryServiceImpl implements RegistryService {
     public HashSet<String> findCommandsByRegistryId(int registryId) throws DataBaseException {
         return registry.findCommandsByRegistryId(registryId);
     }
+
+    @Override
+    public void addCommandsByRegistryId(int registryId, HashSet<String> commands) throws DataBaseException{
+        registry.addCommandsByRegistryId(registryId, commands);
+    }
 }

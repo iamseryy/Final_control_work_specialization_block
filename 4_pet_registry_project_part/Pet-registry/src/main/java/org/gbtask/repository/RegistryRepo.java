@@ -15,4 +15,5 @@ public interface RegistryRepo {
     HashMap<Integer, Registry> findAll() throws DataBaseException;
     Optional<Animal> findByRegistryId(int registryId) throws DataBaseException;
     HashSet<String> findCommandsByRegistryId(int registryId) throws DataBaseException;
+    void addCommandsByRegistryId(int registryId, HashSet<String> commands) throws DataBaseException;
 }
