@@ -40,7 +40,6 @@ public class AnimalCommandListTemplate implements Template {
             if (animal instanceof Cat) {
                 commands = getCommandsList(((Cat) animal).getCommands());
             } else if (animal instanceof Dog) {
-                Dog dog = (Dog) animal;
                 commands = getCommandsList(((Dog) animal).getCommands());
             } else if (animal instanceof Camel) {
                 commands = getCommandsList(((Camel) animal).getCommands());
