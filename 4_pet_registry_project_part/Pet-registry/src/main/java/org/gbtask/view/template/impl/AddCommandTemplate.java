@@ -7,6 +7,7 @@ import org.gbtask.model.base.Animal;
 import org.gbtask.view.template.Execute;
 import org.gbtask.view.template.Template;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.logging.Level;
 
@@ -40,18 +41,56 @@ public class AddCommandTemplate  implements Template {
 
         var animal = animalOpt.get();
 
+        HashSet<String> commandsExisting = null;
+
         if (animal instanceof Cat) {
-            registryService.addCommandsByRegistryId(id, ((Cat) animal).getCommands());
+                commandsExisting = ((Cat) animal).getCommands();
         } else if (animal instanceof Dog) {
-            registryService.addCommandsByRegistryId(id, ((Dog) animal).getCommands());
+            commandsExisting = ((Dog) animal).getCommands();
         } else if (animal instanceof Camel) {
-            registryService.addCommandsByRegistryId(id, ((Camel) animal).getCommands());
+            commandsExisting = ((Camel) animal).getCommands();
         } else if (animal instanceof Donkey) {
-            registryService.addCommandsByRegistryId(id, ((Donkey) animal).getCommands());
+            commandsExisting = ((Donkey) animal).getCommands();
         } else if (animal instanceof Hamster) {
-            registryService.addCommandsByRegistryId(id, ((Hamster) animal).getCommands());
+            commandsExisting = ((Hamster) animal).getCommands();
         } else if (animal instanceof Horse) {
-            registryService.addCommandsByRegistryId(id, ((Horse) animal).getCommands());
+            commandsExisting = ((Horse) animal).getCommands();
+        }
+
+        var newCommands = getNewCommands(commandsExisting);
+    }
+
+    private static HashSet<String> getNewCommands(HashSet<String> commandsExisting){
+        var commands = new HashSet<String>();
+
+        while (true){
+            Optional<String> command =  ui.input("Command: ", String::toString);
+            if(command.isEmpty()){
+                ui.output("\nCancelled\n");
+                commands.clear();
+                return commands;
+            }
+
+            if(commandsExisting.contains(command.get())){
+                ui.output("\nThis command already exists\n");
+            }else {
+                commands.add(command.get());
+            }
+
+            Optional<Integer> choice;
+            while (true) {
+                choice = ui.input("Does the animal know another command?? (1 yes/ 2 no)?: ", Integer::parseInt);
+                if (choice.isEmpty() || choice.get() < 1 || choice.get() > 2) {
+                    ui.output("Invalid input data! Try Again");
+                    continue;
+                }
+
+                if(choice.get() == 2){
+                    return commands;
+                }
+
+                break;
+            }
         }
     }
 }
