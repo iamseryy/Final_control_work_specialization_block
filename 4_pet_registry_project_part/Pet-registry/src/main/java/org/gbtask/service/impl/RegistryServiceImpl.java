@@ -8,6 +8,7 @@ import org.gbtask.repository.impl.RegistryRepoImpl;
 import org.gbtask.service.RegistryService;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Optional;
 
 public class RegistryServiceImpl implements RegistryService {
@@ -26,5 +27,10 @@ public class RegistryServiceImpl implements RegistryService {
     @Override
     public Optional<Animal> findAnimalByRegistryId(int registryId) throws DataBaseException {
         return registry.findByRegistryId(registryId);
+    }
+
+    @Override
+    public HashSet<String> findCommandsByRegistryId(int registryId) throws DataBaseException {
+        return registry.findCommandsByRegistryId(registryId);
     }
 }

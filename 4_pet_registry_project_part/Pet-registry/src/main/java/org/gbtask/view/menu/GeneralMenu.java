@@ -1,9 +1,6 @@
 package org.gbtask.view.menu;
 
-import org.gbtask.view.template.impl.AddAnimalTemplate;
-import org.gbtask.view.template.impl.ExitTemplate;
-import org.gbtask.view.template.impl.FindAnimalTemplate;
-import org.gbtask.view.template.impl.PrintRegistryTemplate;
+import org.gbtask.view.template.impl.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +11,10 @@ public interface GeneralMenu {
             new MenuItem[] {
                     new MenuItem("1 Print registry", () -> new PrintRegistryTemplate().output()),
                     new MenuItem("2 Find animal by id", () -> new FindAnimalTemplate().output()),
-                    new MenuItem("3 Add animal", () -> new AddAnimalTemplate().output()),
-                    new MenuItem("4 Exit", () -> new ExitTemplate().output())
+                    new MenuItem("3 Animal command list", () -> new AnimalCommandListTemplate().output()),
+                    new MenuItem("4 Add animal command", () -> new AddCommandTemplate().output()),
+                    new MenuItem("5 Add animal", () -> new AddAnimalTemplate().output()),
+                    new MenuItem("6 Exit", () -> new ExitTemplate().output())
             }
     );
 }
